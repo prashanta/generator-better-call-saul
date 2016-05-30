@@ -19,20 +19,33 @@ module.exports = function (grunt) {
          },
          // CSS files
          css: {
-            options: {
-               destPrefix: 'public/css'
-            },
-            files: {
-               'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
-            }
+            options: { destPrefix: 'public/css' },
+            files: { 'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'}
          },
          js: {
+            options: { destPrefix: 'public/js/lib' },
+            files: { 'bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js'}
+         }
+      },
+
+      dom_munger: {
+         development:{
             options: {
-               destPrefix: 'public/js/lib'
+               update:[
+                  {selector:'#livereload',attribute:'src', value:'http://localhost:'+reloadPort+'/livereload.js'},
+                  {selector:'#entry',attribute:'src', value:'build/bundle.js'}
+               ]
             },
-            files: {
-               'bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js',
-            }
+            src: './public/index.html'
+         },
+         production: {
+            options: {
+               update: [
+                  {selector:'#livereload',attribute:'src', value:' '},
+                  {selector:'#entry',attribute:'src', value:'build/bundle.min.js'}
+               ]
+            },
+            src: './public/index.html'
          }
       },
 
@@ -43,6 +56,14 @@ module.exports = function (grunt) {
             },
             files:{
                'public/build/bundle.js': ['public/js/index.js']
+            }
+         }
+      },
+
+      uglify: {
+         production: {
+            files: {
+               'public/build/bundle.min.js': 'public/build/bundle.js'
             }
          }
       },
@@ -61,25 +82,16 @@ module.exports = function (grunt) {
          server: {
             files: [
                'app/*.js',
-            ],
-            tasks: ['develop', 'delayed-livereload']
+            ]
          },
          js: {
             files: ['./public/js/*.js'],
-            //tasks: ['browserify'],
-            //files: ['public/build/*.js'],
-            // options: {
-            //    livereload: reloadPort
-            // }
-            tasks: ['delayed-livereload']
+            tasks: ['browserify']
          },
          css: {
             files: [
                'public/css/*.css'
-            ],
-            options: {
-               livereload: reloadPort
-            }
+            ]
          }
       }
    });
@@ -90,8 +102,10 @@ module.exports = function (grunt) {
 
    grunt.registerTask('delayed-livereload', 'Live reload after the node server has restarted.', function () {
       var done = this.async();
+      var f = 'http://localhost:' + reloadPort + '/changed?files=' + files.join(',');
+      console.log(f);
       setTimeout(function () {
-         request.get('http://localhost:' + reloadPort + '/changed?files=' + files.join(','),  function (err, res) {
+         request.get(f,  function (err, res) {
             var reloaded = !err && res.statusCode === 200;
             if (reloaded) {
                grunt.log.ok('Delayed live reload successful.');
@@ -104,12 +118,17 @@ module.exports = function (grunt) {
    });
 
    grunt.registerTask('default', [
+      'bowercopy',
       'browserify',
+      'dom_munger:development',
       'develop',
       'watch'
    ]);
 
    grunt.registerTask('build', [
-    'bowercopy'
-  ]);
+      'bowercopy',
+      'browserify',
+      'uglify',
+      'dom_munger:production'
+   ]);
 };
