@@ -1,13 +1,23 @@
+# generator-better-call-saul
+
 A yeoman generator for webapp based on react, backbone and express. Uses browserify and grunt.
 
-**To copy bower components**
+## Artifacts
 
-*grunt build*
+### Client
+- React.js : For client side (or server) view
+- Backbone.js: For Model and Collection
+- Backbone-React-Component: To glue React and Backbone together
+- React-Bootstrap
+- Bootstrap
 
-**To run**
+### server
+- Express
+- Handlebars
+-  
+### Build Tools:
 
-*grunt*
-
-**To browserify only**
-
-*npm start*
+- Browserify
+- watchify
+- Uglify
+- Babelify

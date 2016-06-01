@@ -15,16 +15,20 @@ module.exports = function (grunt) {
 
       bowercopy: {
          options: {
-            clean: true, // Do not remove bower components folder
+            clean: false, // Do not remove bower components folder
          },
          // CSS files
          css: {
             options: { destPrefix: 'public/css' },
-            files: { 'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css'}
+            files: { 'bootstrap.min.css': 'bootstrap/dist/css/bootstrap.min.css',
+                     'font-awesome.min.css': 'font-awesome/css/font-awesome.min.css',}
          },
          js: {
             options: { destPrefix: 'public/js/lib' },
             files: { 'bootstrap.min.js': 'bootstrap/dist/js/bootstrap.min.js'}
+         },
+         font:{
+            files: { 'public/fonts': 'font-awesome/fonts/*.*'}
          }
       },
 
@@ -81,16 +85,22 @@ module.exports = function (grunt) {
          },
          server: {
             files: [
-               'app/*.js',
-            ]
+               'app/*/*.js'
+            ],
+            tasks: ['develop']
          },
          js: {
-            files: ['./public/js/*.js'],
+            files: ['./public/js/*/*.js'],
             tasks: ['browserify']
          },
          css: {
             files: [
                'public/css/*.css'
+            ]
+         },
+         html: {
+            files: [
+               'public/index.html'
             ]
          }
       }

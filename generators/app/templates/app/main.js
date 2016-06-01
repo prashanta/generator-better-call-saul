@@ -3,6 +3,7 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var morgan = require('morgan');
 var favicon = require('serve-favicon');
+var api = require('./routes/api');
 
 module.exports = function(app, config) {
    var env = process.env.NODE_ENV || 'development';
@@ -20,6 +21,7 @@ module.exports = function(app, config) {
    app.use(favicon(config.root + '/public/img/favicon.ico'));
    app.use(morgan('dev'));
    app.use(express.static(config.root + '/public'));
+   app.use('/api', api);
 
    app.use(function (req, res, next) {
       var err = new Error('Not Found');

@@ -1,18 +1,17 @@
 'use strict';
 
-window.$ = window.jQuery = require('jquery')
-var Backbone = require('backbone');
-var React = require('react');
-var ReactDOM = require('react-dom');
-var bootstrap = require('bootstrap');
-var Hello = require('./components/hello');
+import $ from 'jquery';
+import jQuery from 'jquery';
+window.$ = window.jQuery = $;
 
-var model = new Backbone.Model({
-   title: 'APP TITLE',
-   version: '1.0.0'
-});
+import Backbone from 'backbone';
+import React from 'react';
+import ReactDOM from 'react-dom';
+var bootstrap = require('bootstrap');
+
+import Layout from './components/layout';
 
 ReactDOM.render(
-   <Hello model={model} />,
+   <Layout/>,
    document.getElementById('container')
 );
