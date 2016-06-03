@@ -3,7 +3,7 @@ var express = require('express');
 var exphbs  = require('express-handlebars');
 var morgan = require('morgan');
 var favicon = require('serve-favicon');
-var api = require('./routes/api');
+var glob = require('glob');
 
 module.exports = function(app, config) {
    var env = process.env.NODE_ENV || 'development';
@@ -21,10 +21,15 @@ module.exports = function(app, config) {
    app.use(favicon(config.root + '/public/img/favicon.ico'));
    app.use(morgan('dev'));
    app.use(express.static(config.root + '/public'));
-   app.use('/api', api);
+
+   // Register all routes
+   var routes = glob.sync(config.root + '/app/routes/*.js');
+   routes.forEach(function (route) {
+      require(route)(app);
+   });
 
    app.use(function (req, res, next) {
-      var err = new Error('Not Found');
+      var err = new Error('Not found : ' + req.path);
       err.status = 404;
       next(err);
    });

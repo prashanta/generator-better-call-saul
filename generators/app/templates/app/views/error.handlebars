@@ -1,3 +1,8 @@
-{{ error.status }} : {{ message }}
-<br /><br />
-{{ error.stack }}
+<br />
+<div class="container">
+   <div class="jumbotron">
+      <h3>{{ error.status }} : {{ message }}</h3>
+      <br />
+      {{ error.stack }}
+   </div>
+</div>

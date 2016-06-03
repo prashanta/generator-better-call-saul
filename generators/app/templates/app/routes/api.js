@@ -1,6 +1,10 @@
 var express = require('express');
 var router = express.Router();
 
+module.exports = function(app){
+   app.use('/api', router);
+}
+
 router.get('/apptitle', function(req, res) {
    jsonfile.readFile(file, function(err, obj) {
       if(err == null){
@@ -18,4 +22,11 @@ router.get('/testdata', function(req, res) {
    res.send(data);
 });
 
-module.exports = router;
+router.get('/error', function(req, res) {
+   var data = {
+      code: '101',
+      mesage: 'This is a dummy error message'
+   }
+   res.status(500);
+   res.send(data);
+});

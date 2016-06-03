@@ -26,12 +26,18 @@ module.exports = yeoman.Base.extend({
             name: 'desc',
             message: 'Enter brief description:',
             default: 'Replace this later.'
+         },
+         {
+            type: 'confirm',
+            name: 'run',
+            message: 'Would you like to run npm and bower install?:'
          }
       ];
 
       this.prompt(prompt, function (response) {
          this.options.appName = response.appName;
          this.options.appDesc = response.desc;
+         this.options.run = response.run;
          done();
       }.bind(this));
    }
@@ -76,6 +82,7 @@ createDir: function(){
 },
 
 install: function () {
-   this.installDependencies();   // run: 'npm install' & 'bower install'
+   if(this.options.run)
+      this.installDependencies();   // run: 'npm install' & 'bower install'
 }
 });
