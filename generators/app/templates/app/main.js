@@ -2,6 +2,7 @@ var path = require('path');
 var express = require('express');
 var exphbs  = require('express-handlebars');
 var morgan = require('morgan');
+var bodyParser = require('body-parser');
 var favicon = require('serve-favicon');
 var glob = require('glob');
 
@@ -20,6 +21,8 @@ module.exports = function(app, config) {
 
    app.use(favicon(config.root + '/public/img/favicon.ico'));
    app.use(morgan('dev'));
+   app.use(bodyParser.json());
+   app.use(bodyParser.urlencoded({extended: true}));
    app.use(express.static(config.root + '/public'));
 
    // Register all routes
