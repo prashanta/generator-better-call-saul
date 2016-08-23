@@ -6,9 +6,25 @@ a {
   color: #00B7FF;
 }
 
+.appbar{
+   background-color: #87abb9;
+   position: relative;
+   height: 50px;
+   display: block;
+   min-height: 50px;
+   width: 100%;
+}
+
 .logo{
 	background: url(/img/logo.svg) no-repeat top right;
 	float: right;
 	width: 150px;
 	min-height: 50px;
+}
+
+.ver{
+	font-style: italic;
+	font-weight: normal;
+	font-size: 10px;
+	font-family: Helvetica, Arial;
 }

@@ -12,18 +12,14 @@ export default class Header extends React.Component{
    render(){
       return (
          <div>
-            <nav className="navbar navbar-default">
-               <div className="container-fluid">
-                  <div className="navbar-header">
-                     <div className="navbar-brand">
-                        {this.props.title}&nbsp;&nbsp;<sup>{this.props.ver}</sup>
-                     </div>
-                  </div>
-                  <div className="navbar-right">
-                     <span className="logo"></span>
-                  </div>
+            <div className="appbar">
+               <div className="navbar-left">
+                  <span className="navbar-brand" >
+                     <b>{this.props.title}</b>&nbsp;
+                     <sup className='ver'>{this.props.ver}</sup>
+                  </span>
                </div>
-            </nav>
+            </div>
          </div>
       );
    }

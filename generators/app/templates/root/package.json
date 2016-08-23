@@ -3,7 +3,7 @@
    "version": "0.0.1",
    "private": true,
    "scripts": {
-      "start": "node ./server",
+      "start": "node ./index",
       "dev": "watchify public/js/index.js -v -t babelify -o public/build/bundle.js"
    },
    "dependencies": {

@@ -45,7 +45,6 @@ module.exports = yeoman.Base.extend({
 
 
 writing: {
-
    /*
    env: function(){
    // package.json

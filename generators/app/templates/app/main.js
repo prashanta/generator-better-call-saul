@@ -25,7 +25,7 @@ module.exports = function(app, config) {
    app.use(bodyParser.urlencoded({extended: true}));
    app.use(express.static(config.root + '/public'));
 
-   // Register all routes
+   // Register all routes in app/routes folder
    var routes = glob.sync(config.root + '/app/routes/*.js');
    routes.forEach(function (route) {
       require(route)(app);

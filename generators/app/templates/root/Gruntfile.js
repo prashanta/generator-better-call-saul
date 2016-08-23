@@ -74,7 +74,7 @@ module.exports = function (grunt) {
 
       develop: {
          server: {
-            file: './server.js'
+            file: './index.js'
          }
       },
 

@@ -2,22 +2,20 @@
 
 A yeoman generator for webapp based on react, backbone and express. Uses browserify and grunt.
 
-## Artifacts
+## ARTIFACTS
 
 ### Client
-- React.js : For client side (or server) view
+- React.js : For client side view
 - Backbone.js: For Model and Collection
 - Backbone-React-Component: To glue React and Backbone together
-- React-Bootstrap
-- Bootstrap
+- React-Bootstrap: For all the pretty stuff
 
 ### server
 - Express
 - Handlebars
--  
+ 
 ### Build Tools:
-
 - Browserify
-- watchify
+- Watchify
 - Uglify
 - Babelify
