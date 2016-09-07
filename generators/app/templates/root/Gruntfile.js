@@ -56,7 +56,7 @@ module.exports = function (grunt) {
       browserify: {
          dist:{
             options:{
-               transform:[['babelify']]
+               transform:[['babelify', {babelrc: true}]]
             },
             files:{
                'public/build/bundle.js': ['public/js/index.js']
@@ -74,7 +74,7 @@ module.exports = function (grunt) {
 
       develop: {
          server: {
-            file: './index.js'
+            file: './start.js'
          }
       },
 
@@ -113,7 +113,6 @@ module.exports = function (grunt) {
    grunt.registerTask('delayed-livereload', 'Live reload after the node server has restarted.', function () {
       var done = this.async();
       var f = 'http://localhost:' + reloadPort + '/changed?files=' + files.join(',');
-      console.log(f);
       setTimeout(function () {
          request.get(f,  function (err, res) {
             var reloaded = !err && res.statusCode === 200;

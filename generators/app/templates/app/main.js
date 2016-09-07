@@ -1,12 +1,14 @@
-var path = require('path');
-var express = require('express');
-var exphbs  = require('express-handlebars');
-var morgan = require('morgan');
-var bodyParser = require('body-parser');
-var favicon = require('serve-favicon');
-var glob = require('glob');
+/*jshint esversion: 6 */
 
-module.exports = function(app, config) {
+import path from 'path';
+import express from 'express';
+import exphbs  from 'express-handlebars';
+import morgan from 'morgan';
+import bodyParser from 'body-parser';
+import favicon from 'serve-favicon';
+import {api, defaultRouter} from './routes';
+
+export default function main (app, config) {
    var env = process.env.NODE_ENV || 'development';
    app.locals.ENV = env;
    app.locals.ENV_DEVELOPMENT = env == 'development';
@@ -26,10 +28,8 @@ module.exports = function(app, config) {
    app.use(express.static(config.root + '/public'));
 
    // Register all routes in app/routes folder
-   var routes = glob.sync(config.root + '/app/routes/*.js');
-   routes.forEach(function (route) {
-      require(route)(app);
-   });
+   api(app);
+   defaultRouter(app);
 
    app.use(function (req, res, next) {
       var err = new Error('Not found : ' + req.path);
@@ -56,4 +56,4 @@ module.exports = function(app, config) {
          title: 'error'
       });
    });
-};
+}

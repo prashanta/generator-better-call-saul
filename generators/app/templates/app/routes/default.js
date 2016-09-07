@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+/*jshint esversion: 6 */
 
-module.exports = function (app) {
-   app.use('/', router);
-};
+import express from 'express';
+var router = express.Router();
 
 router.get('/help', function(req, res) {
    res.render('help');
@@ -12,3 +10,7 @@ router.get('/help', function(req, res) {
 router.get('/about', function(req, res) {
    res.render('about');
 });
+
+export default function defaultRouter(app){
+   app.use('/', router);
+}

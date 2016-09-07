@@ -3,11 +3,8 @@
   "version": "0.0.1",
   "description": "",
   "homepage": "",
-  "author": {
-    "name": "Prashanta. S",
-    "email": "pmshrestha@gmail.com",
-    "url": "prashanta.github.io"
-  },
+  "author": "Prashanta Shrestha <pmshrestha@gmail.com>",
+  "license": "MIT",
   "files": [
     "generators"
   ],
@@ -44,10 +41,9 @@
       "mocha": true
     }
   },
-  "repository": "git@bitbucket.org:gemtdev/generator-react-backbone-express.git",
+  "repository": "git@github.com:prashanta/generator-better-call-saul.git",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"
-  },
-  "license": "MIT"
+  }
 }

@@ -1,8 +1,10 @@
-var path = require('path'),
-    rootPath = path.normalize(__dirname + '/..'),
+/*jshint esversion: 6 */
+
+import path from 'path';
+var rootPath = path.normalize(__dirname + '/..'),
     env = process.env.NODE_ENV || 'development';
 
-var config = {
+var _config = {
   development: {
     root: rootPath,
     app: {
@@ -28,4 +30,4 @@ var config = {
   }
 };
 
-module.exports = config[env];
+export default config = _config[env];

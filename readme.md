@@ -1,6 +1,6 @@
 # generator-better-call-saul
 
-A yeoman generator for webapp based on react, backbone and express. Uses browserify and grunt.
+A yeoman generator for webapp using React, Backbone and Express. Uses ES6.
 
 ## ARTIFACTS
 
@@ -10,11 +10,12 @@ A yeoman generator for webapp based on react, backbone and express. Uses browser
 - Backbone-React-Component: To glue React and Backbone together
 - React-Bootstrap: For all the pretty stuff
 
-### server
+### Server
 - Express
 - Handlebars
- 
+
 ### Build Tools:
+- Babel
 - Browserify
 - Watchify
 - Uglify

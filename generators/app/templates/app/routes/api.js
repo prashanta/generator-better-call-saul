@@ -1,9 +1,7 @@
-var express = require('express');
-var router = express.Router();
+/*jshint esversion: 6 */
 
-module.exports = function(app){
-   app.use('/api', router);
-};
+import express from 'express';
+var router = express.Router();
 
 router.get('/testdata', function(req, res) {
    var data = {
@@ -21,3 +19,7 @@ router.get('/error', function(req, res) {
    res.status(500);
    res.send(data);
 });
+
+export default function api(app){
+   app.use('/api', router);
+}
